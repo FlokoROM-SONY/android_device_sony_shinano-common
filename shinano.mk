@@ -45,7 +45,6 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
     $(COMMON_PATH)/rootdir/init.qcom.power.rc:root/init.qcom.power.rc \
     $(COMMON_PATH)/rootdir/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
-    $(COMMON_PATH)/rootdir/init.sony.usb.rc:root/init.sony.usb.rc \
     $(COMMON_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
 
 # ANT+
@@ -69,10 +68,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     e2fsck
 
-# IPC Security Config
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/system/etc/sec_config:system/etc/sec_config
-
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8974
@@ -95,7 +90,6 @@ PRODUCT_PACKAGES += \
     nfc_nci.pn54x.default
 
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/system/etc/nfcee_access.xml:system/etc/nfcee_access.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml

@@ -94,6 +94,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    nfc.app_log_level=1
+
 # Off mode charger
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -149,6 +152,46 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0
+
+# RILD
+PRODUCT_PROPERTY_OVERRIDES += \
+    rild.libpath=/vendor/lib/libril-qc-qmi-1.so \
+    rild.libargs=-d /dev/smd0 \
+    ril.subscription.types=NV,RUIM
+
+# aDSP sensors
+## max rate
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qti.sensors.max_accel_rate=false \
+    ro.qti.sensors.max_gyro_rate=false \
+    ro.qti.sensors.max_mag_rate=false \
+    ro.qti.sensors.max_geomag_rotv=50
+
+## sensor type
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qti.sdk.sensors.gestures=false \
+    ro.qti.sensors.pedometer=false \
+    ro.qti.sensors.step_detector=false \
+    ro.qti.sensors.step_counter=false \
+    ro.qti.sensors.pam=false \
+    ro.qti.sensors.scrn_ortn=false \
+    ro.qti.sensors.smd=true \
+    ro.qti.sensors.game_rv=false \
+    ro.qti.sensors.georv=false \
+    ro.qti.sensors.cmc=false \
+    ro.qti.sensors.bte=false \
+    ro.qti.sensors.fns=false \
+    ro.qti.sensors.qmd=false \
+    ro.qti.sensors.amd=false \
+    ro.qti.sensors.rmd=false \
+    ro.qti.sensors.vmd=false \
+    ro.qti.sensors.gtap=false \
+    ro.qti.sensors.tap=false \
+    ro.qti.sensors.facing=false \
+    ro.qti.sensors.tilt=false \
+    ro.qti.sensors.tilt_detector=false \
+    ro.qti.sensors.dpc=false \
+    ro.qti.sensors.wu=false
 
 # BCM Wifi
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)

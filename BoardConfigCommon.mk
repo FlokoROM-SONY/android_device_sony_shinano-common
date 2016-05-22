@@ -23,8 +23,11 @@ BOARD_VENDOR_PLATFORM := shinano
 # Kernel information
 BOARD_KERNEL_BASE     := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_CMDLINE  := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3b7 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y
-BOARD_KERNEL_CMDLINE  += coherent_pool=8M vmalloc=255M mem=2690M
+BOARD_KERNEL_CMDLINE  := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3
+BOARD_KERNEL_CMDLINE  += dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y
+BOARD_KERNEL_CMDLINE  += coherent_pool=8M vmalloc=300M
+#BOARD_KERNEL_CMDLINE  += coherent_pool=8M vmalloc=255M mem=2690M
+#BOARD_KERNEL_CMDLINE  += androidboot.bootdevice=msm_sdcc.1
 BOARD_KERNEL_CMDLINE  += androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS  := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
 BOARD_KERNEL_SEPARATED_DT := false
@@ -50,7 +53,7 @@ BOARD_HARDWARE_CLASS += device/sony/shinano-common/cmhw
 BOARD_LIB_DUMPSTATE := libdumpstate.sony
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_shinano
+#TARGET_INIT_VENDOR_LIB := libinit_shinano
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
@@ -84,7 +87,7 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2671771648
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/sony/shinano-common/rootdir/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/sony/shinano-common/rootdir/fstab.shinano
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
 
 #MultiROM config. MultiROM also uses parts of TWRP config

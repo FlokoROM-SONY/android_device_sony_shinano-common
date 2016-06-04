@@ -20,7 +20,7 @@ import org.cyanogenmod.hardware.util.FileUtils;
 
 public class VibratorHW {
 
-    private static String LEVEL_PATH = "/sys/devices/virtual/timed_output/vibrator/enable";
+    private static String LEVEL_PATH = "/sys/devices/virtual/timed_output/vibrator/vtg_level";
 
     public static boolean isSupported() {
         return true;

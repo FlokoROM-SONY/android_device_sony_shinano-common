@@ -37,6 +37,12 @@ on boot
     chown system system /sys/devices/virtual/input/clearpad/wakeup_gesture
     chmod 0660 /sys/devices/virtual/input/clearpad/wakeup_gesture
 
+    # Vibrator
+    chown system system /sys/devices/virtual/timed_output/vibrator/vtg_level
+    chmod 0644 /sys/devices/virtual/timed_output/vibrator/vtg_level
+    chown system system /sys/devices/virtual/timed_output/vibrator/enable
+    chmod 0644 /sys/devices/virtual/timed_output/vibrator/enable
+
     # Glove mode
     chown system system /sys/devices/virtual/input/max1187x/glove
     chmod 0660 /sys/devices/virtual/input/max1187x/glove

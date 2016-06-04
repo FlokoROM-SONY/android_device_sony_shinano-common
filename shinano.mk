@@ -157,12 +157,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0
 
-# RILD
-PRODUCT_PROPERTY_OVERRIDES += \
-    rild.libpath=/vendor/lib/libril-qc-qmi-1.so \
-    rild.libargs=-d /dev/smd0 \
-    ril.subscription.types=NV,RUIM
-
 # aDSP sensors
 ## max rate
 PRODUCT_PROPERTY_OVERRIDES += \

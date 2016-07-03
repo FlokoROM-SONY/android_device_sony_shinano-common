@@ -72,6 +72,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     e2fsck
 
+# IDC
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/rootdir/system/usr/idc/clearpad.idc:system/usr/idc/clearpad.idc \
+    $(COMMON_PATH)/rootdir/system/usr/idc/max1187x_touchscreen_0.idc:system/usr/idc/max1187x_touchscreen_0.idc
+
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8974

@@ -27,7 +27,7 @@ BOARD_KERNEL_CMDLINE  := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=
 BOARD_KERNEL_CMDLINE  += dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y
 BOARD_KERNEL_CMDLINE  += coherent_pool=8M vmalloc=300M
 #BOARD_KERNEL_CMDLINE  += coherent_pool=8M vmalloc=255M mem=2690M
-#BOARD_KERNEL_CMDLINE  += androidboot.bootdevice=msm_sdcc.1
+BOARD_KERNEL_CMDLINE  += androidboot.bootdevice=msm_sdcc.1
 BOARD_KERNEL_CMDLINE  += androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS  := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
 BOARD_KERNEL_SEPARATED_DT := false

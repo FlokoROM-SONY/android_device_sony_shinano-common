@@ -74,6 +74,9 @@ WIFI_DRIVER_FW_PATH_STA          := "/vendor/firmware/fw_bcmdhd.bin"
 BOARD_NFC_CHIPSET := pn547
 BOARD_NFC_DEVICE := /dev/pn54x
 
+# Props for hotplugging
+TARGET_SYSTEM_PROP += device/sony/shinano-common/system.prop
+
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true

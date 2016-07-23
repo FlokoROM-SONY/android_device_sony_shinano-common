@@ -96,10 +96,20 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
 TARGET_RECOVERY_IS_MULTIROM := true
 MR_INPUT_TYPE := type_b
 MR_INIT_DEVICES := device/sony/shinano-common/multirom/mr_init_devices.c
-#MR_USE_QCOM_OVERLAY := true
-#MR_QCOM_OVERLAY_HEADER := device/sony/shinano-common/multirom/mr_qcom_overlay.h
-#MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888
+MR_USE_QCOM_OVERLAY := true
+MR_QCOM_OVERLAY_HEADER := device/sony/shinano-common/multirom/mr_qcom_overlay.h
+MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888
 MR_KEXEC_DTB := true
+MR_ALLOW_NKK71_NOKEXEC_WORKAROUND := true
+MR_KEXEC_MEM_MIN := 0x3e7e0000
 MR_FSTAB := device/sony/shinano-common/rootdir/twrp.fstab
 MR_USE_MROM_FSTAB := true
 MR_PIXEL_FORMAT := "RGBX_8888"
+
+#TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+
+# Ensure gzip compression for recovery
+BOARD_NEEDS_LZMA_MINIGZIP := false
+
+# TWRP
+TW_MAX_BRIGHTNESS := 255

@@ -87,6 +87,12 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/system/usr/keylayout/mhl-rcp.kl:system/usr/keylayout/mhl-rcp.kl \
     $(COMMON_PATH)/rootdir/system/usr/keylayout/msm8974-taiko-mtp-snd-card_Button_Jack.kl:system/usr/keylayout/msm8974-taiko-mtp-snd-card_Button_Jack.kl
 
+# FM
+PRODUCT_PACKAGES += \
+    FMRadio \
+    brcm-uim-sysfs \
+    libfmjni
+
 # MAC address - BT and Wi-Fi
 PRODUCT_PACKAGES += \
     macaddrsetup

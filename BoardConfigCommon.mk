@@ -74,6 +74,10 @@ WIFI_DRIVER_FW_PATH_STA          := "/vendor/firmware/fw_bcmdhd.bin"
 BOARD_NFC_CHIPSET := pn547
 BOARD_NFC_DEVICE := /dev/pn54x
 
+# FM definitions for Broadcom solution
+BOARD_HAVE_ALTERNATE_FM := true
+BOARD_HAVE_BCM_FM := true
+
 # Props for hotplugging
 TARGET_SYSTEM_PROP += device/sony/shinano-common/system.prop
 

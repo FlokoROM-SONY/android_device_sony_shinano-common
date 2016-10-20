@@ -44,7 +44,7 @@ AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/sony/shinano-common/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/sony/shinano-common/bluetooth/vnd_shinano.txt
+BOARD_CUSTOM_BT_CONFIG := device/sony/shinano-common/bluetooth/vnd_shinano.txt
 
 # CM Hardware
 BOARD_HARDWARE_CLASS += device/sony/shinano-common/cmhw

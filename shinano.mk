@@ -128,7 +128,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     NfcNci \
     com.android.nfc_extras \
-    nfc_nci.pn54x.default
+    nfc_nci.qcom \
+    libnfc_nci
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/system/etc/nfcee_access.xml:system/etc/nfcee_access.xml \

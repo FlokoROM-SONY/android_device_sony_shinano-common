@@ -114,7 +114,7 @@ service sct_service /system/bin/sct_service
     disabled
  
 # Trim Area QMI service
-service oem_5998_service /system/bin/oem_5998_service
+service oem_5998_service /system/vendor/bin/ta_qmi_service
     user oem_5998
     group oem_5998 oem_5993 system root net_raw wakelock
     disabled
@@ -147,7 +147,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 
 # SONY: oem_5993 Daemon
 # Last 2 args: start block(blk size 128k), number of blocks(partitionsize(kb)/128(kb))
-service tad_static /sbin/tad_static /dev/block/bootdevice/by-name/TA 0,16
+service tad_static /system/vendor/bin/tad_static /dev/block/bootdevice/by-name/TA 0,16
 #service tad_static /sbin/tad_static /data/credmgr/ta_part.bin 0,16
     class oem_5993
     user oem_5997

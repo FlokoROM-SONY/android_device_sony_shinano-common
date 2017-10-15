@@ -19,7 +19,7 @@ TARGET_SPECIFIC_HEADER_PATH += device/sony/shinano-common/include
 
 # Platform
 BOARD_VENDOR_PLATFORM := shinano
-PRODUCT_PLATFORM:= shinano
+PRODUCT_PLATFORM := shinano
 
 MALLOC_SVELTE := true
 
@@ -60,7 +60,7 @@ BOARD_CUSTOM_BT_CONFIG := device/sony/shinano-common/bluetooth/vnd_shinano.txt
 # Camera
 TARGET_USES_MEDIA_EXTENSIONS := true
 
-# CM Hardware
+# Lineage Hardware
 BOARD_HARDWARE_CLASS += device/sony/shinano-common/lineagehw
 
 # Dumpstate
@@ -76,9 +76,9 @@ TARGET_INIT_VENDOR_LIB := libinit_shinano
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#    device/sony/shinano-common/sepolicy
-    
+BOARD_SEPOLICY_DIRS += \
+    device/sony/shinano-common/sepolicy
+
 # Props for hotplugging
 TARGET_SYSTEM_PROP += device/sony/shinano-common/system.prop
 

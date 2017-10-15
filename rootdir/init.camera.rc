@@ -20,6 +20,8 @@ on init
 :/system/bin/iddd|libshims_idd.so \
 :/system/bin/suntrold|libshims_signal.so \
 :/system/lib/hw/camera.qcom.so|libsonycamera.so \
+:/system/lib/libcammw.so|libshim_cald.so \
+:/system/lib/hw/camera.qcom.so|libshim_camera.so \
 "
 
 on early-fs
@@ -158,4 +160,3 @@ service updatemiscta /system/bin/updatemiscta
     user updatemiscta
     group oem_5993
     oneshot
-

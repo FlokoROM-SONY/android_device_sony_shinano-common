@@ -74,7 +74,12 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-   libbt-vendor
+    libbt-vendor
+
+# Camera
+PRODUCT_PACKAGES += \
+    libshim_cald \
+    libshim_camera
 
 # RIL
 PRODUCT_COPY_FILES += \
@@ -97,9 +102,9 @@ PRODUCT_PACKAGES += \
 
 # FM
 PRODUCT_PACKAGES += \
-   FMRadio \
-   brcm-uim-sysfs \
-   libfmradio.v4l2-fm
+    FMRadio \
+    brcm-uim-sysfs \
+    libfmradio.v4l2-fm
 
 # IPC Security Config
 PRODUCT_COPY_FILES += \
@@ -138,7 +143,7 @@ PRODUCT_PACKAGES += \
 
 # Sensor file
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/system/etc/init.qcom-sensor.sh:system/etc/init.qcom-sensor.sh 
+    $(COMMON_PATH)/rootdir/system/etc/init.qcom-sensor.sh:system/etc/init.qcom-sensor.sh
 
 # BCM Wifi
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)

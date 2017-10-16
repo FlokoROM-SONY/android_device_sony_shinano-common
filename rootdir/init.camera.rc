@@ -149,12 +149,13 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 # Last 2 args: start block(blk size 128k), number of blocks(partitionsize(kb)/128(kb))
 service tad_static /system/vendor/bin/tad_static /dev/block/bootdevice/by-name/TA 0,16
 #service tad_static /sbin/tad_static /data/credmgr/ta_part.bin 0,16
-    class oem_5993
+    class core
     user oem_5997
     group oem_5997 oem_5993 root
     socket tad stream 0770 system oem_5993
 # tad_static is in rootfs, normal file_context does not work
     seclabel u:r:tad:s0
+
 service updatemiscta /system/bin/updatemiscta
     class main
     user updatemiscta

@@ -65,6 +65,7 @@ on post-fs-data
 
     chmod 0660 /sys/devices/sony_camera_0/info
     chown media camera /sys/devices/sony_camera_1/info
+    chmod 0660 /sys/devices/sony_camera_1/info
 
     # SONY: Import MiscTA to System properties
     exec -- /system/vendor/bin/taimport property

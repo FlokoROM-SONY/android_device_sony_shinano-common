@@ -1,7 +1,6 @@
 ###################################
 # Dev block nodes
 #
-/dev/block/mmcblk0p1                                            u:object_r:trim_area_partition_device:s0
 /dev/block/platform/msm_sdcc\.1/by-name/TA                      u:object_r:trim_area_partition_device:s0
 /dev/block/bootdevice/by-name/TA                                u:object_r:trim_area_partition_device:s0
 /dev/block/platform/msm_sdcc\.1/by-name/FOTAKernel              u:object_r:recovery_block_device:s0
@@ -16,12 +15,5 @@
 /dev/socket/perfd(/.*)?                                         u:object_r:mpctl_socket:s0
 /sys/class/devfreq(/.*)?                                        u:object_r:sysfs_devfreq:s0
 
-/(vendor|system/vendor)/bin/mlog_qmi_service                    u:object_r:mlog_qmi_exec:s0
-/(vendor|system/vendor)/bin/sct_service                         u:object_r:sct_exec:s0
-/(vendor|system/vendor)/bin/tad_static                          u:object_r:tad_exec:s0
-/(vendor|system/vendor)/bin/ta_qmi_service                      u:object_r:ta_qmi_exec:s0
 /(vendor|system/vendor)/bin/tfa9890_amp                         u:object_r:tfa_amp_exec:s0
 /(vendor|system/vendor)/bin/brcm-uim-sysfs                      u:object_r:brcm_uim_exec:s0
-
-# ZRAM
-/sys/devices/virtual/block/zram0/mm_stat                        u:object_r:sysfs_zram:s0

@@ -63,7 +63,7 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml
+    $(COMMON_PATH)/audio/audio_platform_info.xml:system/vendor/etc/audio_platform_info.xml
 
 PRODUCT_PACKAGES += \
     tfa9890_amp

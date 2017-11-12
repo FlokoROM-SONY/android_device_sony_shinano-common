@@ -53,7 +53,7 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/init.qcom.power.rc:root/init.recovery.qcom.rc
 
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/system/bin/credmgrfirstboot.sh:system/bin/credmgrfirstboot.sh
+    $(COMMON_PATH)/rootdir/system/vendor/bin/credmgrfirstboot.sh:system/vendor/bin/credmgrfirstboot.sh
 
 # ANT+
 PRODUCT_PACKAGES += \

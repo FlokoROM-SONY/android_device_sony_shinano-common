@@ -16,22 +16,24 @@
 
 on init
 	export LD_SHIM_LIBS " \
-/system/bin/credmgrd|libshims_signal.so \
-:/system/bin/iddd|libshims_idd.so \
-:/system/bin/suntrold|libshims_signal.so \
+/system/vendor/bin/credmgrd|libshims_signal.so \
+:/system/vendor/bin/iddd|libshims_idd.so \
+:/system/vendor/bin/suntrold|libshims_signal.so \
+:/system/vendor/bin/mm-qcamera-daemon|libandroid.so \
+:/system/lib/libcammw.so|libsensor.so \
+:/system/lib/libsomc_chokoballpal.so|libGraphicBuffer.so \
 :/system/lib/hw/camera.qcom.so|libsonycamera.so \
-:/system/lib/libcammw.so|libshim_cald.so \
-:/system/lib/hw/camera.qcom.so|libshim_camera.so \
+:/system/lib/hw/camera.qcom.so|libsensor.so \
 "
 
 on early-fs
     wait /dev/block/mmcblk0p1
-    class_start oem_5993
+    class_start trimarea
     exec u:r:qti_init_shell:s0 -- /sbin/wait4tad_static
 
 on early-boot
     #SONY early boot
-    start oem_5998_service
+    start ta_qmi_service
     start sct_service
 
 on boot
@@ -50,19 +52,19 @@ on boot
     chown media system /sys/class/misc/pm8941-flash/device/strobe
     chown media system /sys/class/misc/pm8941-flash/device/vph_pwr_droop
 
-on post-fs
-     # we will remap this as /mnt/sdcard with the sdcard fuse tool
-     mkdir /data/misc/camera 0770 camera camera
-     mkdir /data/misc/cameraserver 0700 cameraserver cameraserver
+on post-fs-data
+    # we will remap this as /mnt/sdcard with the sdcard fuse tool
+    mkdir /data/misc/camera 0770 media camera
+    mkdir /data/misc/cameraserver 0700 cameraserver cameraserver
 
-     # create directory for scd
-     mkdir /dev/socket/scd 0755 system system
-     mkdir /data/scd 0755 system system
+    # create directory for scd
+    mkdir /dev/socket/scd 0755 system system
+    mkdir /data/scd 0755 system system
 
 on post-fs-data
     # SONY: Start early TA-users
     mkdir /data/etc 0755 root shell
-    exec -- /system/bin/taimport
+    exec -- /system/vendor/bin/taimport
 
     # SONY: Create dir for Widevine keybox
     mkdir /data/persist/wv 0700 system system
@@ -70,30 +72,31 @@ on post-fs-data
     # SONY: Camera
     mkdir /data/camera 0770 media camera
     chown media camera /sys/devices/sony_camera_0/info
-    chmod 0770 /sys/devices/sony_camera_0/info
+
+    chmod 0660 /sys/devices/sony_camera_0/info
     chown media camera /sys/devices/sony_camera_1/info
-    chmod 0770 /sys/devices/sony_camera_1/info
 
     # SONY: Import MiscTA to System properties
-    exec -- /system/bin/taimport property
+    exec -- /system/vendor/bin/taimport property
     setprop init.taimport.ready true
     # taimport ready, use this as trigger for multi-cdf-symlinker
 
     # create credmgrinit log file
-    touch /cache/credmgr.log
-    restorecon -R /cache/credmgr.log
+    # Actually, no need, because it will be created by credmgrfirstboot.sh
+    # touch /cache/credmgr.log
+    # restorecon -R /cache/credmgr.log
  
-service taimport /system/bin/taimport
+service taimport /system/vendor/bin/taimport
     class late_start
     user root
     group system
     oneshot
 
 # This script init /cache/CredentialManagerData if /data/credmgr doesn't meet our requirements
-service initcredmgr /system/bin/credmgrfirstboot.sh
+service initcredmgr /system/vendor/bin/credmgrfirstboot.sh
     class late_start
-    user system
-    group oem_5996
+    user root
+    group root
     oneshot
 
 # When credmgrfirstboot is ready it set sys.credmgrdready=true.
@@ -102,30 +105,30 @@ on property:sys.credmgrdready=true
 start credmgrd
 
 # Start Credential manager daemon
-service credmgrd /system/bin/credmgrd
+service credmgrd /system/vendor/bin/credmgrd
     user system
-    group oem_5996
-    socket credmgr stream 0660 system oem_5996
+    group system camera media
+    socket credmgr stream 0660 system camera
     disabled
 
 # Secure Config Transfer service
-service sct_service /system/bin/sct_service
+service sct_service /system/vendor/bin/sct_service
     user root
     disabled
  
 # Trim Area QMI service
-service oem_5998_service /system/vendor/bin/ta_qmi_service
-    user oem_5998
-    group oem_5998 oem_5993 system root net_raw wakelock
+service ta_qmi_service /system/vendor/bin/ta_qmi_service
+    user system
+    group system root net_raw wakelock
     disabled
 
-service scd /system/bin/scd
+service scd /system/vendor/bin/scd
     class late_start
     user system
     group system
 
-#service wvkbd_installer /system/bin/logwrapper /system/bin/wvkbd
-service wvkbd_installer /system/bin/wvkbd
+#service wvkbd_installer /system/bin/logwrapper /system/vendor/bin/wvkbd
+service wvkbd_installer /system/vendor/bin/wvkbd
     user system
     group system
     oneshot
@@ -137,27 +140,25 @@ service wvkbd_installer /system/bin/wvkbd
 on property:sys.listeners.registered=true
     start wvkbd_installer
 
-#service qcamerasvr /system/bin/logwrapper /system/bin/mm-qcamera-daemon
-service qcamerasvr /system/bin/mm-qcamera-daemon
+#service qcamerasvr /system/bin/logwrapper /system/vendor/bin/mm-qcamera-daemon
+service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
-#    group camera system inet input graphics
-    group camera system inet input graphics oem_5996 cameraserver
-#    seclabel u:r:mm-qcamerad:s0
+    group camera media system inet input graphics
+    seclabel u:r:mm-qcamerad:s0
 
-# SONY: oem_5993 Daemon
+# SONY: TrimArea Daemon
 # Last 2 args: start block(blk size 128k), number of blocks(partitionsize(kb)/128(kb))
 service tad_static /system/vendor/bin/tad_static /dev/block/bootdevice/by-name/TA 0,16
-#service tad_static /sbin/tad_static /data/credmgr/ta_part.bin 0,16
+#service tad_static /system/vendor/bin/tad_static /data/credmgr/ta_part.bin 0,16
     class core
-    user oem_5997
-    group oem_5997 oem_5993 root
-    socket tad stream 0770 system oem_5993
-# tad_static is in rootfs, normal file_context does not work
+    user system
+    group system root camera media
+    socket tad stream 0770 system system
     seclabel u:r:tad:s0
 
-service updatemiscta /system/bin/updatemiscta
+service updatemiscta /system/vendor/bin/updatemiscta
     class main
-    user updatemiscta
-    group oem_5993
+    user system
+    group system
     oneshot

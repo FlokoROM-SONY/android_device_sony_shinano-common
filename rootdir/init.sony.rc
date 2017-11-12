@@ -2,22 +2,22 @@
 
 on fs
     # SONY: create mount point for idd
-    mkdir /idd 0751 idd idd
+    mkdir /idd 0751 system system
 
     # SONY: setup idd partition
-    chown oem_5987 oem_5987 /idd
+    chown system system /idd
     chmod 0751 /idd
     exec u:r:qti_init_shell:s0 -- /system/bin/rm -r /idd/lost+found
     symlink /idd /mnt/idd
     restorecon_recursive   /idd
 
-on-post-fs-data
-    mkdir /mnt/idd/lost+found 0770 root root
-    mkdir /mnt/idd/output 0755 oem_5987 oem_5987
-    mkdir /mnt/idd/socket 0711 oem_5987 oem_5987
-    restorecon_recursive /mnt/idd
+on post-fs-data
+    mkdir /idd/lost+found 0770 root root
+    mkdir /idd/output 0755 system system
+    mkdir /idd/socket 0711 system system
+    restorecon_recursive /idd
 
-service iddd /system/bin/iddd
+service iddd /system/vendor/bin/iddd
     class main
-    user oem_5987
-    group oem_5987 log inet oem_5993
+    user system
+    group system log inet cameraserver media

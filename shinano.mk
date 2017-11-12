@@ -112,7 +112,8 @@ PRODUCT_COPY_FILES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore.msm8974
+    keystore.msm8974 \
+    libcryptfs_hw
 
 # Keylayout
 PRODUCT_COPY_FILES += \

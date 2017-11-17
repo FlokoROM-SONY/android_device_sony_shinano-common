@@ -474,7 +474,7 @@ service thermanager /system/vendor/bin/thermanager /system/etc/thermanager.xml
     user root
     group root
 
-service irsc_util /system/vendor/bin/irsc_util "/etc/sec_config"
+service irsc_util /system/vendor/bin/irsc_util "/system/vendor/etc/sec_config"
     class main
     user root
     oneshot

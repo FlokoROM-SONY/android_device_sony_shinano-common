@@ -101,7 +101,7 @@ on early-boot
     write /sys/kernel/boot_adsp/boot 1
 
     # Run pre_hw_config.sh before entering charge only mode.
-    exec /system/bin/sh /system/etc/pre_hw_config.sh
+    start hw_config_service
 
 on boot
     write /sys/module/qpnp_power_on/parameters/forcecrash_on 1
@@ -405,6 +405,10 @@ on property:bluetooth.isEnabled=true
 #    start btwlancoex
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
+service hw_config_service /system/etc/pre_hw_config.sh
+    disabled
+    oneshot
+
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/vendor/bin/qmuxd
     class main
@@ -484,7 +488,7 @@ service sensors /system/vendor/bin/sensors.qcom
     user root
     group root wakelock
 
-service qcom-sensor-sh /system/bin/sh /system/etc/init.qcom-sensor.sh
+service qcom-sensor-sh /system/etc/init.qcom-sensor.sh
     class main
     user root
     oneshot

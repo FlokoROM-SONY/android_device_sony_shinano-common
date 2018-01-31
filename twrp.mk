@@ -14,6 +14,9 @@ PRODUCT_COPY_FILES += \
 
 TW_DEVICE_VERSION := 3
 
+# Do not build recovery.img from boot.img
+BOARD_USES_FULL_RECOVERY_IMAGE := true
+
 # TWRP UI
 BOARD_HAS_NO_SELECT_BUTTON := true
 TW_NO_SCREEN_BLANK := true

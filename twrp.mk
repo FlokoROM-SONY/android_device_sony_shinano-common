@@ -76,7 +76,7 @@ MR_USE_MROM_FSTAB := true
 MR_PIXEL_FORMAT := "RGBX_8888"
 
 # Ensure gzip compression for recovery
-BOARD_NEEDS_LZMA_MINIGZIP := false
+LZMA_RAMDISK_TARGETS := recovery
 
 # Brithtness
 TW_MAX_BRIGHTNESS := 255

@@ -71,4 +71,16 @@ on boot
 	write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
 	write /dev/cpuctl/cpu.notify_on_migrate 1
 
-service qseecomd /sbin/qseecomd
+on fs
+	# needed to make qseecomd work in recovery
+	chmod 0660 /dev/qseecom
+	chown system drmrpc /dev/qseecom
+	chmod 0664 /dev/ion
+	chown system system /dev/ion
+
+service keystore_auth /sbin/keystore_auth
+	disabled
+	oneshot
+	user system
+	group root
+	seclabel u:r:recovery:s0

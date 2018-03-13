@@ -509,6 +509,8 @@ service adsprpcd /system/vendor/bin/adsprpcd
 
 service charger /charger
     class charger
+    user root
+    group root radio system
     seclabel u:r:charger:s0
 
 # Redefined Service

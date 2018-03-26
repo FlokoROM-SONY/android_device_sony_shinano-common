@@ -53,6 +53,11 @@ TW_CRYPTO_KEY_LOC := "footer"
 TW_CRYPTO_USE_SYSTEM_VOLD := qseecomd
 TARGET_HW_KEYSTORE := true
 TW_CRYPTO_USE_KEYMASTER_V1 := false
+TW_CRYPTO_USE_SYSTEM_VOLD := \
+    qseecomd \
+    keymaster-3-0 \
+    hwservicemanager
+TW_INCLUDE_CRYPTO_FBE := true
 #TARGET_HW_DISK_ENCRYPTION := true
 #TARGET_SWV8_DISK_ENCRYPTION := true
 #TARGET_CRYPTFS_HW_PATH := "vendor/qcom/opensource/cryptfs_hw"

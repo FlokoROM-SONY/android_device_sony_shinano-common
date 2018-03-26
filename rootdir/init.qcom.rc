@@ -411,12 +411,6 @@ service qmuxd /system/vendor/bin/qmuxd
     user radio
     group radio audio bluetooth gps nfc diag wakelock
 
-# Wi-Fi and BT MAC addresses
-service macaddrsetup /system/vendor/bin/macaddrsetup /sys/devices/platform/bcmdhd_wlan/macaddr
-    class late_start
-    user root
-    oneshot
-
 service netmgrd /system/vendor/bin/netmgrd
     class late_start
     user root
@@ -487,12 +481,6 @@ service mlog_qmi_service /system/vendor/bin/mlog_qmi_service
     class late_start
     user root
 
-# Thermal Manager service
-service thermanager /system/vendor/bin/thermanager /system/etc/thermanager.xml
-    class main
-    user root
-    group root
-
 service irsc_util /system/vendor/bin/irsc_util "/system/vendor/etc/sec_config"
     class main
     user root
@@ -522,11 +510,6 @@ service adsprpcd /system/vendor/bin/adsprpcd
 service charger /charger
     class charger
     seclabel u:r:charger:s0
-
-service audiod /system/bin/audiod
-    class late_start
-    user system
-    group system
 
 # Redefined Service
 service audioserver /system/bin/audioserver
@@ -566,13 +549,6 @@ service mpdecision /system/vendor/bin/mpdecision --avg_comp
     user root
     group bluetooth net_bt
     seclabel u:r:uim:s0
-
-# OSS time
-service timekeep /system/vendor/bin/timekeep restore
-    class late_start
-    user root
-    group root
-    oneshot
 
 service hvdcp /system/vendor/bin/hvdcp
     class core

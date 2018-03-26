@@ -1,0 +1,5 @@
+# Wi-Fi and BT MAC addresses
+service macaddrsetup /system/vendor/bin/macaddrsetup /sys/devices/platform/bcmdhd_wlan/macaddr
+    class late_start
+    user root
+    oneshot

@@ -63,9 +63,6 @@ BOARD_CUSTOM_BT_CONFIG := device/sony/shinano-common/bluetooth/vnd_shinano.txt
 BOARD_HAVE_BCM_FM_SYSFS := "/sys/bus/platform/drivers/bcm_ldisc/bcm_ldisc/"
 BOARD_BRCM_HCI_NUM := 26
 
-# Lineage Hardware
-BOARD_HARDWARE_CLASS += device/sony/shinano-common/lineagehw
-
 # GPS
 TARGET_PROVIDES_GPS_LOC_API := true
 

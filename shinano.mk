@@ -113,8 +113,7 @@ PRODUCT_COPY_FILES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore.msm8974 \
-    libcryptfs_hw
+    keystore.msm8974
 
 # Keylayout
 PRODUCT_COPY_FILES += \
@@ -146,7 +145,10 @@ PRODUCT_PACKAGES += \
 
 # Busybox
 PRODUCT_PACKAGES += \
-    busybox
+    busybox \
+    twrp.fstab \
+    init.recovery.vold_decrypt.rc \
+    init.recovery.vold_decrypt.qseecomd.rc
 
 # Sensor file
 PRODUCT_COPY_FILES += \

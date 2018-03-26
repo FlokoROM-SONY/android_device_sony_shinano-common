@@ -9,8 +9,8 @@
 # limitations under the License.
 
 # Time Zone data for Recovery
-PRODUCT_COPY_FILES += \
-    bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
+#PRODUCT_COPY_FILES += \
+#    bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
 TW_DEVICE_VERSION := 3
 
@@ -47,9 +47,11 @@ TW_CRYPTO_REAL_BLKDEV := "/dev/block/bootdevice/by-name/userdata"
 TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,barrier=1,noauto_da_alloc,discard"
 TW_CRYPTO_FS_FLAGS := "0x00000406"
 TW_CRYPTO_KEY_LOC := "footer"
-TARGET_HW_DISK_ENCRYPTION := true
+TW_CRYPTO_USE_SYSTEM_VOLD := qseecomd
 TARGET_HW_KEYSTORE := true
-TARGET_CRYPTFS_HW_PATH := "vendor/qcom/opensource/cryptfs_hw"
+#TARGET_HW_DISK_ENCRYPTION := true
+#TARGET_SWV8_DISK_ENCRYPTION := true
+#TARGET_CRYPTFS_HW_PATH := "vendor/qcom/opensource/cryptfs_hw"
 
 # Recovery
 #TARGET_RECOVERY_FSTAB := device/sony/shinano-common/multirom/twrp.fstab

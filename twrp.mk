@@ -16,6 +16,7 @@ TW_DEVICE_VERSION := 3
 
 # Do not build recovery.img from boot.img
 BOARD_USES_FULL_RECOVERY_IMAGE := true
+RECOVERY_FROM_BOOT_RSYNC_OPTIONS := --exclude=init.real --exclude=init
 
 # TWRP UI
 BOARD_HAS_NO_SELECT_BUTTON := true

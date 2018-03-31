@@ -537,6 +537,7 @@ service mpdecision /system/vendor/bin/mpdecision --avg_comp
     class main
     user root
     group root readproc
+    socket mpctl dgram 666
     disabled
 
 # brcm-uim-sysfs (BT/FM/ANT+)

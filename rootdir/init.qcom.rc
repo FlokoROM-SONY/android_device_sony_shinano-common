@@ -451,7 +451,7 @@ on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale 2
 
-service ril-daemon2 /system/vendor/bin/rild -c 2
+service ril-daemon2 /system/vendor/bin/hw/rild -c 2
     class late_start
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
@@ -539,7 +539,7 @@ service mpdecision /system/vendor/bin/mpdecision --avg_comp
     disabled
 
 # brcm-uim-sysfs (BT/FM/ANT+)
- service uim /system/vendor/bin/brcm-uim-sysfs
+service uim /system/vendor/bin/brcm-uim-sysfs
     class late_start
     user root
     group bluetooth net_bt

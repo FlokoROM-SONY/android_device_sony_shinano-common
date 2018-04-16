@@ -85,6 +85,7 @@ MR_PIXEL_FORMAT := "RGBX_8888"
 
 # Ensure gzip compression for recovery
 LZMA_RAMDISK_TARGETS := recovery
+SONY_INIT_USE_LZMA := true
 
 # Brithtness
 TW_MAX_BRIGHTNESS := 255

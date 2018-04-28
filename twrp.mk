@@ -52,7 +52,6 @@ TW_CRYPTO_REAL_BLKDEV := "/dev/block/bootdevice/by-name/userdata"
 TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,barrier=1,noauto_da_alloc,discard"
 TW_CRYPTO_FS_FLAGS := "0x00000406"
 TW_CRYPTO_KEY_LOC := "footer"
-TW_CRYPTO_USE_SYSTEM_VOLD := qseecomd
 TARGET_HW_KEYSTORE := true
 TW_CRYPTO_USE_KEYMASTER_V1 := false
 TW_CRYPTO_USE_SYSTEM_VOLD := \

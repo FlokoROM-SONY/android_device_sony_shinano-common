@@ -11,19 +11,19 @@ LOCAL_POST_INSTALL_CMD += \
     cp -uv $(TARGET_ROOT_OUT)/init.real $(TARGET_RECOVERY_ROOT_OUT)/init ;
 
 LOCAL_ADDITIONAL_DEPENDENCIES += \
-    twrpdec \
     $(TARGET_ROOT_OUT)/init \
     $(TARGET_ROOT_OUT)/init.real \
     init_sony
+#    twrpdec \
 
 # if hw keystore, build keystore support and create /system symlinks
-ifeq ($(TARGET_HW_KEYSTORE), true)
-#we have hw keystore, add to build
-LOCAL_ADDITIONAL_DEPENDENCIES += \
-    libvolddecrypt \
-    init.recovery.vold_decrypt.rc
-
-endif
+#ifeq ($(TARGET_HW_KEYSTORE), true)
+##we have hw keystore, add to build
+#LOCAL_ADDITIONAL_DEPENDENCIES += \
+#    libvolddecrypt \
+#    init.recovery.vold_decrypt.rc
+#
+#endif
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 include $(BUILD_PREBUILT)
 

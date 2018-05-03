@@ -55,9 +55,9 @@ PRODUCT_COPY_FILES += \
     hardware/sony/timekeep/vendor/etc/init/timekeep.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/timekeep.rc \
     $(COMMON_PATH)/rootdir/system/vendor/etc/init/macaddrsetup.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/macaddrsetup.rc
 
-# Recovery Init
+# Init power
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/init.qcom.power.rc:root/init.recovery.qcom.rc
+    $(COMMON_PATH)/rootdir/init.qcom.power.rc:root/init.qcom.power.rc
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/system/vendor/bin/credmgrfirstboot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/credmgrfirstboot.sh

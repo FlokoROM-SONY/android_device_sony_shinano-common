@@ -118,5 +118,8 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2671771648
 TARGET_RECOVERY_FSTAB := device/sony/shinano-common/rootdir/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
 
+# Offline Charging
+#WITH_AICP_CHARGER := true
+
 # TWRP
 include device/sony/shinano-common/twrp.mk

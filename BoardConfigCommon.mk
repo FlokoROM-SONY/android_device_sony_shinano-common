@@ -121,12 +121,12 @@ NXP_CHIP_TYPE := 1
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
-    /system/vendor/bin/credmgrd|/system/vendor/lib/libshims_signal.so \
-    /system/vendor/bin/iddd|/system/vendor/lib/libshims_idd.so \
-    /system/vendor/bin/suntrold|/system/vendor/lib/libshims_signal.so \
-    /system/lib/hw/camera.vendor.qcom.so|/system/vendor/lib/libsonycamera.so \
+    /vendor/bin/credmgrd|/vendor/lib/libshims_signal.so \
+    /vendor/bin/iddd|/vendor/lib/libshims_idd.so \
+    /vendor/bin/suntrold|/vendor/lib/libshims_signal.so \
+    /system/lib/hw/camera.vendor.qcom.so|/vendor/lib/libsonycamera.so \
     /system/lib/libcammw.so|libsensor.so \
-    /system/lib/libsomc_chokoballpal.so|/system/vendor/lib/libshim_camera.so
+    /system/lib/libsomc_chokoballpal.so|/vendor/lib/libshim_camera.so
 
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072

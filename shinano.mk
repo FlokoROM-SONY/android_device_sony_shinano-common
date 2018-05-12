@@ -99,7 +99,7 @@ PRODUCT_PACKAGES += \
 
 # IPC Security Config
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/system/etc/sec_config:system/vendor/etc/sec_config
+    $(COMMON_PATH)/rootdir/system/etc/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -140,7 +140,7 @@ PRODUCT_PACKAGES += \
 
 # Sensor file
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/system/vendor/bin/init.qcom-sensor.sh:system/vendor/bin/init.qcom-sensor.sh
+    $(COMMON_PATH)/rootdir/system/vendor/bin/init.qcom-sensor.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom-sensor.sh
 
 # BCM Wifi
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk)

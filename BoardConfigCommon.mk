@@ -77,7 +77,7 @@ BOARD_SEPOLICY_DIRS += \
     device/sony/shinano-common/sepolicy
 
 # Props for hotplugging
-TARGET_SYSTEM_PROP += device/sony/shinano-common/system.prop
+TARGET_VENDOR_PROP += device/sony/shinano-common/vendor.prop
 
 #Sensors
 USE_SENSOR_MULTI_HAL := true

@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-import /init.qcom.power.rc
-import /init.sony.rc
-import /init.sony.usb.rc
-import /init.platform-common.rc
-import /init.camera.rc
+import /vendor/etc/init/hw/init.qcom.power.rc
+import /vendor/etc/init/hw/init.sony.rc
+import /vendor/etc/init/hw/init.sony.usb.rc
+import /vendor/etc/init/hw/init.platform-common.rc
+import /vendor/etc/init/hw/init.camera.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
@@ -404,13 +404,13 @@ on property:bluetooth.isEnabled=true
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
 # QMUX must be in multiple groups to support external process connections
-service qmuxd /system/vendor/bin/qmuxd
+service qmuxd /vendor/bin/qmuxd
     class main
     user root
     group radio audio bluetooth gps nfc diag wakelock qcom_diag
 
 
-service netmgrd /system/vendor/bin/netmgrd
+service netmgrd /vendor/bin/netmgrd
     class late_start
     user root
     group root system wifi wakelock radio inet
@@ -420,12 +420,12 @@ on property:ro.radio.noril=true
     stop ril-daemon
     stop netmgrd
 
-service qseecomd /system/vendor/bin/qseecomd
+service qseecomd /vendor/bin/qseecomd
     class core
     user root
     group drmrpc root
 
-service wpa_supplicant /system/vendor/bin/hw/wpa_supplicant \
+service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf -N \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
@@ -445,7 +445,7 @@ on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale 2
 
-service ril-daemon2 /system/vendor/bin/hw/rild -c 2
+service ril-daemon2 /vendor/bin/hw/rild -c 2
     class late_start
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
@@ -457,39 +457,39 @@ on property:persist.radio.multisim.config=dsds
     start ril-daemon2
 
 # Start suntrold
-service suntrold /system/vendor/bin/suntrold
+service suntrold /vendor/bin/suntrold
     user system
     group system camera
     oneshot
     class main
 
 # Modem Log QMI service
-service mlog_qmi_service /system/vendor/bin/mlog_qmi_service
+service mlog_qmi_service /vendor/bin/mlog_qmi_service
     class late_start
     user root
 
-service irsc_util /system/vendor/bin/irsc_util "/system/vendor/etc/sec_config"
+service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class main
     user root
     oneshot
 
-service rmt_storage /system/vendor/bin/rmt_storage
+service rmt_storage /vendor/bin/rmt_storage
     class core
     user root
     group system wakelock
 
-service sensors /system/vendor/bin/sensors.qcom
+service sensors /vendor/bin/sensors.qcom
     class late_start
     user root
     group root wakelock
 
-service qcom-sensor-sh /system/bin/sh /system/vendor/bin/init.qcom.sensors.sh
+service qcom-sensor-sh /system/bin/sh /vendor/bin/init.qcom.sensors.sh
     class main
     user root
     oneshot
 
 # HexagonDSP FastRPC daemon
-service adsprpcd /system/vendor/bin/adsprpcd
+service adsprpcd /vendor/bin/adsprpcd
    class main
    user media
    group media
@@ -527,7 +527,7 @@ service mediadrm /system/bin/mediadrmserver
     group mediadrm drmrpc
     ioprio rt 4
 
-service mpdecision /system/vendor/bin/mpdecision --avg_comp
+service mpdecision /vendor/bin/mpdecision --avg_comp
     class main
     user root
     group root readproc
@@ -535,13 +535,13 @@ service mpdecision /system/vendor/bin/mpdecision --avg_comp
     disabled
 
 # brcm-uim-sysfs (BT/FM/ANT+)
-service uim /system/vendor/bin/brcm-uim-sysfs
+service uim /vendor/bin/brcm-uim-sysfs
     class late_start
     user root
     group bluetooth net_bt
     seclabel u:r:uim:s0
 
-service hvdcp /system/vendor/bin/hvdcp
+service hvdcp /vendor/bin/hvdcp
     class core
     user root
     disabled

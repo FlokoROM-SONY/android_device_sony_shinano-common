@@ -17,25 +17,39 @@
 
 #include <stdlib.h>
 
+#include <android-base/file.h>
+#include <android-base/strings.h>
+
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
 
-#include <sys/system_properties.h>
+using android::base::ReadFileToString;
+using android::base::Split;
+using android::init::property_set;
 
-static void import_kernel_nv(const std::string& key,
-        const std::string& value, bool for_emulator __attribute__((unused)))
+void import_kernel_cmdline(const std::function<void(const std::string&, const std::string&)>& fn) {
+    std::string cmdline;
+    android::base::ReadFileToString("/proc/cmdline", &cmdline);
+
+    for (const auto& entry : android::base::Split(android::base::Trim(cmdline), " ")) {
+        std::vector<std::string> pieces = android::base::Split(entry, "=");
+        if (pieces.size() == 2) {
+            fn(pieces[0], pieces[1]);
+        }
+    }
+}
+
+static void import_kernel_nv(const std::string& key, const std::string& value)
 {
     if (key.empty()) return;
 
     // We only want the bootloader version
     if (key == "oemandroidboot.s1boot") {
-		android::init::property_set("ro.boot.oemandroidboot.s1boot", value.c_str());
+		property_set("ro.boot.oemandroidboot.s1boot", value.c_str());
     }
 }
 
 void vendor_load_properties()
 {
-    android::init::import_kernel_cmdline(0, import_kernel_nv);
+    import_kernel_cmdline(import_kernel_nv);
 }

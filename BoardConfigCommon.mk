@@ -19,7 +19,7 @@ TARGET_SPECIFIC_HEADER_PATH += device/sony/shinano-common/include
 
 # Platform
 BOARD_VENDOR_PLATFORM := shinano
-PRODUCT_PLATFORM:= shinano
+PRODUCT_PLATFORM := shinano
 
 MALLOC_SVELTE := true
 

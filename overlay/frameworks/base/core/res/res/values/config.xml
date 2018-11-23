@@ -105,4 +105,7 @@
          The duplication is necessary, because this information is used before the features are
          available to the system.-->
     <bool name="config_freeformWindowManagement">true</bool>
+
+    <!-- Whether safe headphone volume is enabled or not (country specific). -->
+    <bool name="config_safe_media_volume_enabled">false</bool>
 </resources>

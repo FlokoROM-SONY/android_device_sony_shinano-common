@@ -303,7 +303,7 @@ on post-fs-data
     # Observe dnsmasq.leases file for dhcp information of soft ap.
     chown dhcp dhcp /data/misc/dhcp
 
-    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
+    mkdir /data/vendor/bluetooth 0770 bluetooth bluetooth
 
     # led RGB
     chown system system /sys/class/leds/rgb/sync_state

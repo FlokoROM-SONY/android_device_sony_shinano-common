@@ -123,7 +123,6 @@ TARGET_LD_SHIM_LIBS := \
     /system/vendor/bin/mm-qcamera-daemon|libandroid.so \
     /system/lib/libcammw.so|libsensor.so \
     /system/lib/libsomc_chokoballpal.so|/system/vendor/lib/libshim_camera.so \
-    /system/lib/libcald_pal.so|/system/vendor/lib/libshim_cald.so \
     /system/lib/hw/camera.vendor.qcom.so|libsensor.so
 
 # Filesystem

@@ -56,9 +56,16 @@ persist.vendor.audio.fluence.voicerec=false
 persist.vendor.audio.fluence.audiorec=true
 persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.aanc.enable=true
+persist.speaker.prot.enable=false
+audio.deep_buffer.media=false
+af.fast_track_multiplier=1
+vendor.av.streaming.offload.enable=enable
+media.aac_51_output_enabled=true
+qcom.hw.aac.encoder=true
 vendor.audio_hal.period_size=192
 vendor.audio.offload.buffer.size.kb=192
 vendor.audio.offload.gapless.enabled=false
+vendor.audio.offload.track.enabled=true
 
 # Secure discard
 ro.lockscreen.secdiscard=false

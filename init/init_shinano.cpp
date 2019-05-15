@@ -20,12 +20,14 @@
 #include <android-base/file.h>
 #include <android-base/strings.h>
 
-#include "vendor_init.h"
 #include "property_service.h"
 
 using android::base::ReadFileToString;
 using android::base::Split;
 using android::init::property_set;
+
+namespace android {
+namespace init {
 
 void import_kernel_cmdline(const std::function<void(const std::string&, const std::string&)>& fn) {
     std::string cmdline;
@@ -53,3 +55,6 @@ void vendor_load_properties()
 {
     import_kernel_cmdline(import_kernel_nv);
 }
+
+}  // namespace init
+}  // namespace android

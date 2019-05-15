@@ -1,0 +1,107 @@
+on early-init
+    symlink /dev/block/platform/msm_sdcc.1 /dev/block/bootdevice
+    wait /dev/block/bootdevice
+
+    start patchlevel
+
+on init
+    export LD_CONFIG_FILE /sbin/ld.config.txt
+    setprop sys.usb.ffs.aio_compat 1
+
+    chmod 0660 /dev/qseecom
+    chown system drmrpc /dev/qseecom
+    chmod 0664 /dev/ion
+    chown system system /dev/ion
+
+on boot
+    #allow core adjustements
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+
+    write /sys/module/lpm_levels/system/cpu0/pc/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu0/wfi/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu0/retention/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu0/standalone_pc/suspend_enabled 1
+
+    write /sys/module/lpm_levels/system/cpu1/pc/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu1/wfi/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu1/retention/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu1/standalone_pc/suspend_enabled 1
+
+    write /sys/module/lpm_levels/system/cpu2/pc/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu2/wfi/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu2/retention/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu2/standalone_pc/suspend_enabled 1
+
+    write /sys/module/lpm_levels/system/cpu3/pc/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu3/wfi/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu3/retention/suspend_enabled 1
+    write /sys/module/lpm_levels/system/cpu3/standalone_pc/suspend_enabled 1
+
+    write /sys/module/lpm_levels/system/cpu0/pc/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu0/wfi/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu0/retention/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu0/standalone_pc/idle_enabled 1
+
+    write /sys/module/lpm_levels/system/cpu1/pc/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu1/wfi/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu1/retention/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu1/standalone_pc/idle_enabled 1
+
+    write /sys/module/lpm_levels/system/cpu2/pc/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu2/wfi/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu2/retention/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu2/standalone_pc/idle_enabled 1
+
+    write /sys/module/lpm_levels/system/cpu3/pc/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu3/wfi/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu3/retention/idle_enabled 1
+    write /sys/module/lpm_levels/system/cpu3/standalone_pc/idle_enabled 1
+
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq  300000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1500000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq  300000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1500000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq  300000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1500000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq  300000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1500000
+
+    #restore core auto control with new settings
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/class/devfreq/qcom,cpubw.40/governor "cpubw_hwmon"
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
+    write /dev/cpuctl/cpu.notify_on_migrate 1
+
+    start chargeled
+    start getadjust
+
+service patchlevel /sbin/patchlevel.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+service chargeled /sbin/chargeled
+    disabled
+    seclabel u:r:charger:s0
+
+service getadjust /sbin/sh /sbin/readtimeprop.sh
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
+
+service sbintimekeep /sbin/sbin_timekeep restore
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
+
+on property:twrp.timeadjusted=1
+    start sbintimekeep

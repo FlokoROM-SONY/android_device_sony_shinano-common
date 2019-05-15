@@ -139,7 +139,4 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2671771648
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/sony/shinano-common/rootdir/fstab.full
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
-SONY_INIT_USE_LZMA := true
-LZMA_RAMDISK_TARGETS := recovery
+include device/sony/shinano-common/twrp.mk

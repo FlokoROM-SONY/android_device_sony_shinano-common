@@ -107,4 +107,6 @@ on property:dev.bootcomplete=1
 
     rm /data/system/perfd/default_values
     setprop sys.io.scheduler "bfq"
-    start mpdecision
+
+    write /sys/module/intelli_plug/parameters/intelli_plug_active 1
+    #start mpdecision

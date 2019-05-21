@@ -143,7 +143,7 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/system/vendor/bin/init.qcom-sensor.sh:system/vendor/bin/init.qcom-sensor.sh
 
 # BCM Wifi
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk)
 
 # Include non-opensource parts
 $(call inherit-product-if-exists, vendor/sony/shinano-common/shinano-common-vendor.mk)

@@ -40,14 +40,17 @@ PRODUCT_COPY_FILES += \
 
 # Init
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
-    $(COMMON_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
-    $(COMMON_PATH)/rootdir/init.camera.rc:root/init.camera.rc \
-    $(COMMON_PATH)/rootdir/init.platform-common.rc:root/init.platform-common.rc \
-    $(COMMON_PATH)/rootdir/init.sony.rc:root/init.sony.rc \
-    $(COMMON_PATH)/rootdir/init.qcom.power.rc:root/init.qcom.power.rc \
-    $(COMMON_PATH)/rootdir/init.sony.usb.rc:root/init.sony.usb.rc \
-    $(COMMON_PATH)/rootdir/ueventd.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
+    $(COMMON_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom \
+    $(COMMON_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
+
+PRODUCT_PACKAGES += \
+    init.qcom.rc \
+    init.camera.rc \
+    init.platform-common.rc \
+    init.sony.rc \
+    init.qcom.power.rc \
+    init.sony.usb.rc \
+    ueventd.qcom.rc
 
 # Camera (stock .575 blobs)
 PRODUCT_PACKAGES += \
@@ -93,9 +96,9 @@ PRODUCT_PACKAGES += \
 
 # FM
 PRODUCT_PACKAGES += \
-   FMRadio \
-   brcm-uim-sysfs \
-   libfmradio.v4l2-fm
+    FMRadio \
+    brcm-uim-sysfs \
+    libfmradio.v4l2-fm
 
 # IPC Security Config
 PRODUCT_COPY_FILES += \

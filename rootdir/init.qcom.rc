@@ -403,7 +403,6 @@ on post-fs-data
     start wvkbd_installer
 
 on property:bluetooth.isEnabled=true
-#    start btwlancoex
     write /sys/class/bluetooth/hci0/idle_timeout 7000
     
 on property:sys.boot_completed=1
@@ -426,7 +425,7 @@ service netmgrd /vendor/bin/netmgrd
     class late_start
     user root
     group root system wifi wakelock radio inet
-    seclabel u:r:netmgrd:s0
+#    seclabel u:r:netmgrd:s0
     
 on property:ro.radio.noril=true
     stop ril-daemon
@@ -507,17 +506,16 @@ service qcom-sensor-sh /vendor/bin/init.qcom-sensor.sh
 
 # HexagonDSP FastRPC daemon
 service adsprpcd /vendor/bin/adsprpcd
-   class main
-   user media
-   group media
-   seclabel u:r:adsprpcd:s0
+    class main
+    user media
+    group media
+#    seclabel u:r:adsprpcd:s0
 
 service charger /charger
     class charger
     user root
     group root radio system
-    seclabel u:r:charger:s0
-
+#    seclabel u:r:charger:s0
 
 # Redefined Service
 service audioserver /system/bin/audioserver
@@ -531,7 +529,6 @@ service drm /system/bin/drmserver
     class main
     user drm
     group drm system inet drmrpc readproc
-
 
 service media /system/bin/mediaserver
     class main
@@ -556,7 +553,7 @@ service uim /vendor/bin/brcm-uim-sysfs
     class late_start
     user root
     group bluetooth net_bt
-    seclabel u:r:uim:s0
+#    seclabel u:r:uim:s0
 
 # OSS time
 service timekeep /vendor/bin/timekeep restore
@@ -566,7 +563,7 @@ service timekeep /vendor/bin/timekeep restore
     oneshot
     writepid /dev/cpuset/system-background/tasks
 
-# Quick Charge    
+# Quick Charge
 service hvdcp /vendor/bin/hvdcp
     class core
     user root

@@ -19,7 +19,8 @@ on init
 on early-fs
     wait /dev/block/mmcblk0p1
     class_start trimarea
-    exec u:r:qti_init_shell:s0 -- /sbin/wait4tad_static
+#    exec u:r:qti_init_shell:s0 -- /sbin/wait4tad_static
+    exec /sbin/wait4tad_static
 
 on early-boot
     #SONY early boot
@@ -54,7 +55,7 @@ on post-fs-data
 on post-fs-data
     # SONY: Start early TA-users
     mkdir /data/etc 0755 root shell
-    exec -- /vendor/bin/taimport
+    exec /vendor/bin/taimport
 
     # SONY: Create dir for Widevine keybox
     mkdir /data/persist/wv 0700 system system
@@ -68,7 +69,7 @@ on post-fs-data
     chmod 0660 /sys/devices/sony_camera_1/info
 
     # SONY: Import MiscTA to System properties
-    exec -- /vendor/bin/taimport property
+    exec /vendor/bin/taimport property
     setprop init.taimport.ready true
     # taimport ready, use this as trigger for multi-cdf-symlinker
 
@@ -88,7 +89,7 @@ service initcredmgr /vendor/bin/credmgrfirstboot.sh
 # When credmgrfirstboot is ready it set sys.credmgrdready=true.
 # Start credmgrd after that
 on property:sys.credmgrdready=true
-start credmgrd
+    start credmgrd
 
 # Start Credential manager daemon
 service credmgrd /vendor/bin/credmgrd
@@ -135,14 +136,13 @@ service qcamerasvr /vendor/bin/mm-qcamera-daemon
 
 # SONY: TrimArea Daemon
 # Last 2 args: start block(blk size 128k), number of blocks(partitionsize(kb)/128(kb))
-service tad_static /sbin/tad_static /dev/block/bootdevice/by-name/TA 0,16
+service tad_static /vendor/bin/tad_static /dev/block/bootdevice/by-name/TA 0,16
 #service tad_static /sbin/tad_static /data/credmgr/ta_part.bin 0,16
     class core
     user system
     group system root camera media
     socket tad stream 0770 system system
-# tad_static is in rootfs, normal file_context does not work
-    seclabel u:r:tad:s0
+#    seclabel u:r:tad:s0
 
 service updatemiscta /vendor/bin/updatemiscta
     class main

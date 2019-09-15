@@ -56,7 +56,7 @@ AUDIO_FEATURE_ENABLED_EXTN_POST_PROC := true
 AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
 AUDIO_FEATURE_ENABLED_HDMI_SPK := true
 USE_XML_AUDIO_POLICY_CONF := 1
-USE_CUSTOM_AUDIO_POLICY := 1
+USE_CUSTOM_AUDIO_POLICY := 0
 
 # FM
 BOARD_HAVE_ALTERNATE_FM := true
@@ -90,8 +90,8 @@ TARGET_INIT_VENDOR_LIB := libinit_shinano
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/sony/shinano-common/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    device/sony/shinano-common/sepolicy
 
 # Props for hotplugging
 TARGET_SYSTEM_PROP += device/sony/shinano-common/system.prop

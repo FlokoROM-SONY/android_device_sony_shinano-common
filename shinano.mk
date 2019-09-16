@@ -60,6 +60,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/system/vendor/bin/credmgrfirstboot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/credmgrfirstboot.sh
 
+# APEX
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/ld.config.txt:$(TARGET_COPY_OUT_SYSTEM)/etc/swcodec/ld.config.txt
+
 # Audio
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/audio/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml

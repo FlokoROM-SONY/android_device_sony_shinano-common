@@ -125,9 +125,9 @@ TARGET_LD_SHIM_LIBS := \
     /vendor/bin/credmgrd|/vendor/lib/libshims_signal.so \
     /vendor/bin/iddd|/vendor/lib/libshims_idd.so \
     /vendor/bin/suntrold|/vendor/lib/libshims_signal.so \
-    /system/lib/hw/camera.vendor.qcom.so|/vendor/lib/libsonycamera.so \
-    /system/lib/libcammw.so|libsensor.so \
-    /system/lib/libsomc_chokoballpal.so|/vendor/lib/libshim_camera.so
+    /vendor/lib/hw/camera.vendor.qcom.so|/vendor/lib/libsonycamera.so \
+    /vendor/lib/libcammw.so|libsensor.so \
+    /vendor/lib/libsomc_chokoballpal.so|/vendor/lib/libshim_camera.so
 
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072

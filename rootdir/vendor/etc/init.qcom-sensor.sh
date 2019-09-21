@@ -1,4 +1,4 @@
-#!/system/bin/sh
+#!/vendor/bin/sh
 # Copyright (C) 2013 Sony Mobile Communications AB.
 
 #

@@ -13,6 +13,7 @@ LOCAL_SRC_FILES := \
         tfa9890_amp.c
 
 LOCAL_MODULE := tfa9890_amp
+LOCAL_HEADER_LIBRARIES := libaudio_system_headers
 
 LOCAL_MODULE_TAGS := optional
 LOCAL_PROPRIETARY_MODULE := true

@@ -52,7 +52,6 @@ on post-fs-data
     mkdir /dev/socket/scd 0755 system system
     mkdir /data/scd 0755 system system
 
-on post-fs-data
     # SONY: Start early TA-users
     mkdir /data/etc 0755 root shell
     exec /vendor/bin/taimport

@@ -129,12 +129,6 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
-    # Create PERFD deamon related dirs
-    mkdir /data/misc/perfd 0755 root system
-    chmod 2755 /data/misc/perfd
-    mkdir /data/system/perfd 0770 root system
-    chmod 2770 /data/system/perfd
-
     #Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
 
@@ -147,10 +141,6 @@ on boot
     # Send single UNSOL_CALL_RING notification
     setprop ro.telephony.call_ring.multiple false
     
-    # Create folder for timekeep
-    mkdir /data/time/ 0700 system system
-    chmod 0770 /data/time/ats_2
-
     # port-bridge
     chmod 0660 /dev/smd0
     chown system system /dev/smd0
@@ -268,11 +258,6 @@ on boot
     chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
 
 on post-fs
-    # Change to socket location on libkeyctrl/suntory for /data encryption
-    # Create suntory data directory
-    mkdir /dev/socket/suntory 0755 system system
-    mkdir /data/suntory 0755 system system
-
     # led RGB
     chown system system /sys/class/leds/rgb/sync_state
     chown system system /sys/class/leds/rgb/start_blink
@@ -293,6 +278,21 @@ on post-fs
     chown system system /sys/class/leds/led:rgb_blue/pause_hi_multi
 
 on post-fs-data
+    # Change to socket location on libkeyctrl/suntory for /data encryption
+    # Create suntory data directory
+    mkdir /dev/socket/suntory 0755 system system
+    mkdir /data/suntory 0755 system system
+
+    # Create PERFD deamon related dirs
+    mkdir /data/misc/perfd 0755 root system
+    chmod 2755 /data/misc/perfd
+    mkdir /data/system/perfd 0770 root system
+    chmod 2770 /data/system/perfd
+
+    # Create folder for timekeep
+    mkdir /data/time/ 0700 system system
+    chmod 0770 /data/time/ats_2
+
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/vendor/wifi 0770 wifi wifi

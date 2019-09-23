@@ -121,6 +121,11 @@ else
             F_LOG "setting persist.sys.timeadjust ended with $?"
             # trigger timekeep daemon
             setprop twrp.timeadjusted 1
+        elif [ -r /data/property/persistent_properties ];then
+            setprop persist.sys.timeadjust $(grep -h -A 1 persist.sys.timeadjust /data/property/persistent_properties | sed -n 2p)
+            F_LOG "setting persist.sys.timeadjust ended with $?"
+            # trigger timekeep daemon
+            setprop twrp.timeadjusted 1
         else
             F_ELOG "/data/property/persist.sys.timeadjust not accessible! Cannot set time!"
         fi

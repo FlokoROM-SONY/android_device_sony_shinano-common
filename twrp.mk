@@ -40,12 +40,6 @@ TW_HAS_NO_RECOVERY_PARTITION := true
 
 # TWRP Crypto
 TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
-TW_CRYPTO_USE_SYSTEM_VOLD := \
-    qseecomd \
-    keymaster-3-0 \
-    hwservicemanager \
-    servicemanager
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"

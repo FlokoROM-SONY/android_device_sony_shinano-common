@@ -79,6 +79,9 @@ TARGET_USES_64_BIT_BINDER := true
 # Camera
 TARGET_USES_MEDIA_EXTENSIONS := true
 
+# Charger
+BACKLIGHT_PATH := "/sys/class/leds/lcd-backlight/brightness"
+
 # GPS
 TARGET_PROVIDES_GPS_LOC_API := true
 
